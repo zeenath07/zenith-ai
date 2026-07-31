@@ -1,38 +1,51 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
+import Container from "@/components/shared/Container";
+import { Button } from "@/components/ui/button";
+
+const navItems = [
+  { label: "Features", href: "#features" },
+  { label: "How it Works", href: "#how" },
+  { label: "Roadmap", href: "#roadmap" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/30 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="text-2xl font-bold tracking-tight">
-          <span className="text-white">Zenith</span>{" "}
-          <span className="text-cyan-400">AI</span>
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl"
+    >
+      <Container className="flex h-20 items-center justify-between">
+
+        <Link href="/" className="text-3xl font-bold tracking-tight">
+          <span className="text-white">Zenith</span>
+          <span className="text-cyan-400"> AI</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <Link href="#" className="text-gray-300 hover:text-white">
-            Features
-          </Link>
-
-          <Link href="#" className="text-gray-300 hover:text-white">
-            About
-          </Link>
-
-          <Link href="#" className="text-gray-300 hover:text-white">
-            Pricing
-          </Link>
-
-          <Link href="#" className="text-gray-300 hover:text-white">
-            Contact
-          </Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="text-sm text-gray-300 transition hover:text-cyan-400"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
-        <button className="rounded-xl bg-cyan-500 px-5 py-2 font-medium text-black transition hover:bg-cyan-400">
+        <Button
+          className="rounded-xl bg-cyan-500 px-6 text-black hover:bg-cyan-400"
+        >
           Get Started
-        </button>
-      </div>
-    </header>
+        </Button>
+
+      </Container>
+    </motion.header>
   );
 }
