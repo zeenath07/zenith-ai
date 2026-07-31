@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/landing/Hero";
+import TrustedBy from "@/components/landing/TrustedBy";
 import Features from "@/components/landing/Features";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
+      <TrustedBy />
       <Features />
     </>
   );
